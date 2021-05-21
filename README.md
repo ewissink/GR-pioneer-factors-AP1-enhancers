@@ -20,3 +20,6 @@ The Manuscript data folder includes:
 
 ### Figures 
 The figures folder includes R Notebooks used to generate figures
+
+### LaTeX code
+All files and figures required to compile LaTeX manuscript
