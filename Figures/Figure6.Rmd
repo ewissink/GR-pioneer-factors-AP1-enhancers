@@ -1,0 +1,24 @@
+---
+title: "Code to generate Figure 6 of 'Glucocorticoid receptor collaborates with pioneer factors and AP-1 to execute genome-wide regulation'"
+author: "Erin M. Wissink"
+output:
+  pdf_document: default
+  html_notebook: default
+---
+
+```{bash, eval=F}
+computeMatrix reference-point \
+-R A549_GR_A549_induced.bed A549_GR_no_changed_CCREs.bed \
+U2OS_GR_U2OS_induced.bed U2OS_GR_no_changed_CCREs.bed \
+-S CEBPB.pval.bw FOXA2.pval.bw FOSL2.pval.bw GR_ChIPseq_A549_100nMdex.bw   \
+-out A549_GR_CCREs_CEBPB_FOXA2_FOSL2_GR_1kb.computeMatrix.gz \
+--referencePoint center --missingDataAsZero \
+--upstream 500 --downstream 500  
+
+plotProfile \
+--matrixFile \
+A549_GR_CCREs_CEBPB_FOXA2_FOSL2_GR_1kb.computeMatrix.gz \
+--outFileName \
+A549_GR_CCREs_CEBPB_FOXA2_FOSL2_GR_1kb.metaplot.pdf \
+--refPointLabel 'center' --yMin 0 --yMax 8 35 10 100 
+```
