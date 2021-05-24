@@ -23,3 +23,12 @@ The figures folder includes R Notebooks used to generate figures
 
 ### LaTeX code
 All files and figures required to compile LaTeX manuscript
+
+### Data_from_analyses
+Includes:
+
+- BED files of unique and cell type-specific GORs
+- Read counts for genes and CCREs
+- DESeq2 analysis for genes and CCREs
+
+ENCODE pipelines used for ATAC-seq and ChIP-seq analyses
