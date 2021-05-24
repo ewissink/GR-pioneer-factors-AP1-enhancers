@@ -405,24 +405,35 @@ p2  <-  ggplot() +
 
 ##Running HOMER to find motif enrichment in transcribed vs not GR sites
 ```{r Make fasta files, error = F, message = F, warning = F}
+A549_GR_A549_induced_HOMER <- 
+  center.bed(A549_GR_A549_induced, 150, 149)
 bedtoolsr::bt.getfasta(
-  fi = '../Manuscript_data/hg38.fa', 
-  bed = A549_GR_A549_induced, 
+  fi = 'hg38.fa', 
+  bed = A549_GR_A549_induced_HOMER, 
   fo = 'A549_GR_A549_induced.fa'
   )
+
+A549_GR_no_changed_CCREs_HOMER <- 
+  center.bed(A549_GR_no_changed_CCREs, 150, 149)
 bedtoolsr::bt.getfasta(
-  fi = '../Manuscript_data/hg38.fa', 
-  bed = A549_GR_no_changed_CCREs, 
+  fi = 'hg38.fa', 
+  bed = A549_GR_no_changed_CCREs_HOMER, 
   fo = 'A549_GR_no_changed_CCREs.fa'
   )
+
+U2OS_GR_U2OS_induced_HOMER <- 
+  center.bed(U2OS_GR_U2OS_induced, 150, 149)
 bedtoolsr::bt.getfasta(
-  fi = '../Manuscript_data/hg38.fa', 
-  bed = U2OS_GR_U2OS_induced, 
+  fi = 'hg38.fa', 
+  bed = U2OS_GR_U2OS_induced_HOMER, 
   fo = 'U2OS_GR_U2OS_induced.fa'
   )
+
+U2OS_GR_no_changed_CCREs_HOMER <- 
+  center.bed(U2OS_GR_no_changed_CCREs, 150, 149)
 bedtoolsr::bt.getfasta(
-  fi = '../Manuscript_data/hg38.fa', 
-  bed = U2OS_GR_no_changed_CCREs, 
+  fi = 'hg38.fa', 
+  bed = U2OS_GR_no_changed_CCREs_HOMER, 
   fo = 'U2OS_GR_no_changed_CCREs.fa')
 ```
 
