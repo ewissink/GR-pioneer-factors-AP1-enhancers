@@ -1,0 +1,95 @@
+hub GRenhtrackHub
+shortLabel GR enhancers Track Hub
+longLabel Data from 'Glucocorticoid receptor collaborates with pioneer factors and AP-1 to execute genome-wide regulation'
+useOneFile on
+email erin.wissink@cornell.edu
+
+genome hg38
+	
+track A549_EtOH_PROseq_fwd
+shortLabel A549 EtOH PRO-seq fwd
+longLabel A549 EtOH replicate-merged subsampled PRO-seq signal forward strand
+color 255,0,0
+type bigWig 5 0
+maxHeightPixels 100:32:8
+bigDataUrl https://github.com/ewissink/GR-pioneer-factors-AP1-enhancers/blob/master/Manuscript_data/PRO-seq_bigwigs/Merged_subsampled/A549_WT_0dex_merged_subsampled_fwd.bw
+
+track A549_EtOH_PROseq_rev
+shortLabel A549 EtOH PRO-seq rev
+longLabel A549 EtOH replicate-merged subsampled PRO-seq signal reverse strand
+color 0,0,255
+type bigWig -5 0
+maxHeightPixels 100:32:8
+bigDataUrl https://github.com/ewissink/GR-pioneer-factors-AP1-enhancers/blob/master/Manuscript_data/PRO-seq_bigwigs/Merged_subsampled/A549_WT_0dex_merged_subsampled_rev.bw
+
+track A549_1nMDex_PROseq_fwd
+shortLabel A549 1 nM dex PRO-seq fwd
+longLabel A549 1 nM dex replicate-merged subsampled PRO-seq signal forward strand
+color 255,0,0
+type bigWig 5 0
+maxHeightPixels 100:32:8
+bigDataUrl https://github.com/ewissink/GR-pioneer-factors-AP1-enhancers/blob/master/Manuscript_data/PRO-seq_bigwigs/Merged_subsampled/A549_WT_01dex_merged_subsampled_fwd.bw
+
+track A549_1nM_PROseq_rev
+shortLabel A549 1 nM dex PRO-seq rev
+longLabel A549 1 nM replicate-merged subsampled PRO-seq signal reverse strand
+color 0,0,255
+type bigWig -5 0
+maxHeightPixels 100:32:8
+bigDataUrl https://github.com/ewissink/GR-pioneer-factors-AP1-enhancers/blob/master/Manuscript_data/PRO-seq_bigwigs/Merged_subsampled/A549_WT_01dex_merged_subsampled_rev.bw
+
+track A549_100nM_PROseq_fwd
+shortLabel A549 100 nM dex PRO-seq fwd
+longLabel A549 100 nM dex replicate-merged subsampled PRO-seq signal forward strand
+color 255,0,0
+type bigWig 5 0
+maxHeightPixels 100:32:8
+bigDataUrl https://github.com/ewissink/GR-pioneer-factors-AP1-enhancers/blob/master/Manuscript_data/PRO-seq_bigwigs/Merged_subsampled/A549_WT_100dex_merged_subsampled_fwd.bw
+
+track A549_EtOH_PROseq_rev
+shortLabel A549 100 nM dex PRO-seq rev
+longLabel A549 100 nM dex replicate-merged subsampled PRO-seq signal reverse strand
+color 0,0,255
+type bigWig -5 0
+maxHeightPixels 100:32:8
+bigDataUrl https://github.com/ewissink/GR-pioneer-factors-AP1-enhancers/blob/master/Manuscript_data/PRO-seq_bigwigs/Merged_subsampled/A549_WT_100dex_merged_subsampled_rev.bw
+
+track U2OS_EtOH_PROseq_rev
+shortLabel U2OS EtOH PRO-seq rev
+longLabel U2OS EtOH replicate-merged subsampled PRO-seq signal reverse strand
+color 0,0,255
+type bigWig -5 0
+maxHeightPixels 100:32:8
+bigDataUrl https://github.com/ewissink/GR-pioneer-factors-AP1-enhancers/blob/master/Manuscript_data/PRO-seq_bigwigs/Merged_subsampled/U2OS_WT_0dex_merged_subsampled_rev.bw
+
+track U2OS_1nMDex_PROseq_fwd
+shortLabel U2OS 1 nM dex PRO-seq fwd
+longLabel U2OS 1 nM dex replicate-merged subsampled PRO-seq signal forward strand
+color 255,0,0
+type bigWig 5 0
+maxHeightPixels 100:32:8
+bigDataUrl https://github.com/ewissink/GR-pioneer-factors-AP1-enhancers/blob/master/Manuscript_data/PRO-seq_bigwigs/Merged_subsampled/U2OS_WT_01dex_merged_subsampled_fwd.bw
+
+track U2OS_1nM_PROseq_rev
+shortLabel U2OS 1 nM dex PRO-seq rev
+longLabel U2OS 1 nM replicate-merged subsampled PRO-seq signal reverse strand
+color 0,0,255
+type bigWig -5 0
+maxHeightPixels 100:32:8
+bigDataUrl https://github.com/ewissink/GR-pioneer-factors-AP1-enhancers/blob/master/Manuscript_data/PRO-seq_bigwigs/Merged_subsampled/U2OS_WT_01dex_merged_subsampled_rev.bw
+
+track U2OS_100nM_PROseq_fwd
+shortLabel U2OS 100 nM dex PRO-seq fwd
+longLabel U2OS 100 nM dex replicate-merged subsampled PRO-seq signal forward strand
+color 255,0,0
+type bigWig 5 0
+maxHeightPixels 100:32:8
+bigDataUrl https://github.com/ewissink/GR-pioneer-factors-AP1-enhancers/blob/master/Manuscript_data/PRO-seq_bigwigs/Merged_subsampled/U2OS_WT_100dex_merged_subsampled_fwd.bw
+
+track U2OS_EtOH_PROseq_rev
+shortLabel U2OS 100 nM dex PRO-seq rev
+longLabel U2OS 100 nM dex replicate-merged subsampled PRO-seq signal reverse strand
+color 0,0,255
+type bigWig -5 0
+maxHeightPixels 100:32:8
+bigDataUrl https://github.com/ewissink/GR-pioneer-factors-AP1-enhancers/blob/master/Manuscript_data/PRO-seq_bigwigs/Merged_subsampled/U2OS_WT_100dex_merged_subsampled_rev.bw
