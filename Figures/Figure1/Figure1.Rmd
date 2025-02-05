@@ -24,8 +24,10 @@ library(gridExtra)
 library(wesanderson)
 
 coordinatesPath <- '../Manuscript_data/'
-bigwigPath <- '../Manuscript_data/PRO-seq_bigwigs/Raw/'
-outputs <- '../figure_outputs/'
+bigwigPath <- '../../Manuscript_data/PRO-seq_bigwigs/Raw/'
+outputs <- '../../figure_outputs/'
+
+gb_coords <- '../../figure_outputs/hg38_refseq_NR_gene_bodies.bed'
 
 #getting lists of bigwig files
 posbw <- list.files(path = bigwigPath, pattern = '*_plus.bw')
@@ -45,119 +47,11 @@ gg_options <- theme(axis.text.x = element_text(size = 8),
 ```
 
 
-## Creating coordinate files for promoters and genes
-Taking RefSeq coordinates for genes and parsing out:
-1. Promoter coordinates
-2. Gene coordinates for each unique TSS and TES (alternative splicing isoforms are ignored)
-3. One set of coordinates for each gene, using the most internal TSS and TES, and removing the first and last 1 kb so as to remove sites of polymerase pausing
-```{python Gene and promoter coordinates}
-
-pathToUse='/home/emw97/GR_enhancers/Manuscript_data/'
-
-#Downloaded from UCSC Table Browser
-refseqFile=pathToUse+'hg38_refseq.txt' 
-
-#BED file that collapses down to unique TSS and TES sites
-rsBED=pathToUse+'hg38_refseq.bed' 
-
-#BED file that has one of coordinates per gene, 
-#using most internal TSS and TES, removing 1 kb from 5' and 3' ends
-rsBednr=pathToUse+'hg38_refseq_NR_1kb.bed' 
-
-promoterFile=pathToUse+'hg38_refseq_promoters.bed'
-
-#amount upstream and downstream of annotated TSS to consider a promoter
-lowerBound=1000
-upperBound=1000
-
-
-#creating list of chromosomes for humans
-chromList=[]
-for i in range(1,23):
-    chromList.append('chr'+str(i))
-chromList.append('chrX')
-chromList.append('chrY')
-
-
-rsIn=open(refseqFile,'r')
-rsIn.readline()
-rsOut=open(rsBED,'w')
-promOut=open(promoterFile,'w')
-
-def inBED(bedList,currBed):
-    #finds if current gene coordinates have already been recorded
-    if currBed in bedList:
-        toReturn='no'
-    else:
-        toReturn='yes'
-        bedList.append(currBed)
-    return toReturn,bedList
-
-#Making dictionary of non-redundant promoters and bed file of refSeq information
-nonredunProm={}
-geneCoord=[]
-nrGeneCoord={}
-keepProm='no'
-keepGene='no'
-
-
-while 1: 
-    curr=rsIn.readline()
-    if not curr:
-        break
-    curr=curr.rstrip().split('\t')
-    if curr[2] in chromList and curr[1][:2]=='NM':
-        currBED=[curr[2],curr[4],curr[5],curr[12],'.',curr[3]]
-        toCheck=[currBED[0],currBED[1],currBED[2],currBED[5]]
-        toWrite,geneCoord=inBED(geneCoord,toCheck)
-        if toWrite=='yes':
-            rsOut.write('\t'.join(currBED)+'\n')
-        
-        if currBED[3] in nrGeneCoord.keys():
-            if int(currBED[1]) > int(nrGeneCoord[currBED[3]][1]):
-                nrGeneCoord[currBED[3]][1] = currBED[1]
-            if int(currBED[2]) < int(nrGeneCoord[currBED[3]][2]):
-                nrGeneCoord[currBED[3]][2] = currBED[2]
-        else:
-            nrGeneCoord[currBED[3]]=currBED
-                
-        if curr[3]=='+':
-            promStart=int(curr[4])-lowerBound
-            promEnd=int(curr[4])+upperBound                
-        if curr[3]=='-':
-            promStart=int(curr[5])-upperBound
-            promEnd=int(curr[5])+lowerBound
-        if curr[12] not in nonredunProm:
-            nonredunProm[curr[12]]=[[promStart,promEnd]]
-            keep='yes'
-        else:
-            if [promStart,promEnd] in nonredunProm[curr[12]]:
-                keep='no'
-            else:
-                nonredunProm[curr[12]].append([promStart,promEnd])
-                keep='yes'
-        if keep=='yes':
-            promOutput=[curr[2],promStart,promEnd,curr[12],'.',curr[3]]   
-            promOut.write('\t'.join(map(str,promOutput))+'\n')
-rsOut.close()
-rsIn.close()
-promOut.close()
-
-rsNRout=open(rsBednr, 'w')
-for i in nrGeneCoord.keys():
-    output=nrGeneCoord[i]
-    output[1]=str(int(output[1])+lowerBound)
-    output[2]=str(int(output[2])+upperBound)
-    rsNRout.write('\t'.join(output) + '\n')
-rsNRout.close()
-```
-
-
 ## Finding read counts for each gene from raw bigwigs, using the bigWig package.
 ```{r Gene counts, error = F, message = F, warning = F}
 
 #read in coordinates
-gene_data <- read.table(paste0(coordinatesPath,'hg38_refseq_NR_1kb.bed'),sep='\t')
+gene_data <- read.table(gb_coords,sep=',')
 colnames(gene_data) <- c('chrom','start','end','name','','strand')
 
 gene_data <- gene_data[gene_data$end>gene_data$start,]
