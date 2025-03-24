@@ -1,0 +1,1 @@
+cmd = ../../figure_outputs/U2OS_GR_unique.fa fasta test/ -find ../../Manuscript_data/GCR_HUMAN.H11MO.0.A.motif

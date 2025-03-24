@@ -1,0 +1,1 @@
+cmd = ../../figure_outputs/A549_GORs.fa fasta A549_GORs_vs_U2OS -len 8,10,12 -fastaBg ../../figure_outputs/U2OS_GORs.fa -mcheck ../../Manuscript_data/HOCOMOCOv11_core_HUMAN_mono_homer_format_0.001.motif -bits -nogo -mknown ../../Manuscript_data/HOCOMOCOv11_core_HUMAN_mono_homer_format_0.001.motif

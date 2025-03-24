@@ -1,1 +1,1 @@
-This files cover how to recreate Figure 1. First run `Figure1.ipynb` to create the needed coordinate files. Then run `Figure1.Rmd` for further analyses, which can be visualized in `Figure1.pdf`.
+This files cover how to recreate Figure 1. First run `Figure1.ipynb` to create the needed coordinate files for promoters and gene bodies. Then run `Figure1.Rmd` for further analyses, which can be visualized in `Figure1.pdf`.
