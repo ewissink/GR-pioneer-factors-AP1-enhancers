@@ -143,36 +143,38 @@ bedtoolsr::bt.getfasta(fi = '../Manuscript_data/hg38.fa',
 
 ###Running HOMER
 
-export PATH=$PATH:/home/emw97/homer/bin
+
 ```{bash, eval=F}
+export PATH=$PATH:/home/emw97/homer/bin
+hoco='../Manuscript_data/HOCOMOCOv11_core_HUMAN_mono_homer_format_0.001.motif'
 findMotifs.pl A549_all_induced_CCREs_300bp.fa \
 fasta A549_induced_CCREs_vs_bkgd_CCREs/ \
 -len 8,10,12 -fastaBg bkgd_CCREs_300bp.fa \
--mcheck HOCOMOCOv11_core_HUMAN_mono_homer_format_0.001.motif \
+-mcheck $hoco \
 -bits -nogo  -p 8 \
--mknown HOCOMOCOv11_core_HUMAN_mono_homer_format_0.001.motif
+-mknown $hoco
 
 findMotifs.pl U2OS_all_induced_CCREs_300bp.fa \
 fasta U2OS_induced_CCREs_vs_bkgd_CCREs/ \
 -len 8,10,12 -fastaBg bkgd_CCREs_300bp.fa \
--mcheck HOCOMOCOv11_core_HUMAN_mono_homer_format_0.001.motif \
+-mcheck $hoco \
 -bits -nogo  -p 8 \
--mknown HOCOMOCOv11_core_HUMAN_mono_homer_format_0.001.motif
+-mknown $hoco
 
 
 findMotifs.pl A549_all_repressed_CCREs_300bp.fa \
 fasta A549_repressed_CCREs_vs_bkgd_CCREs/ \
 -len 8,10,12 -fastaBg bkgd_CCREs_300bp.fa \
--mcheck HOCOMOCOv11_core_HUMAN_mono_homer_format_0.001.motif \
+-mcheck $hoco \
 -bits -nogo -p 8 \
--mknown HOCOMOCOv11_core_HUMAN_mono_homer_format_0.001.motif
+-mknown $hoco
 
 findMotifs.pl U2OS_all_repressed_CCREs_300bp.fa \
 fasta U2OS_repressed_CCREs_vs_bkgd_CCREs/ \
 -len 8,10,12 -fastaBg bkgd_CCREs_300bp.fa \
--mcheck HOCOMOCOv11_core_HUMAN_mono_homer_format_0.001.motif \
+-mcheck $hoco \
 -bits -nogo -p 8 \
--mknown HOCOMOCOv11_core_HUMAN_mono_homer_format_0.001.motif
+-mknown $hoco
 
 ```
 

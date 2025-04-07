@@ -408,7 +408,7 @@ p2  <-  ggplot() +
 A549_GR_A549_induced_HOMER <- 
   center.bed(A549_GR_A549_induced, 150, 149)
 bedtoolsr::bt.getfasta(
-  fi = 'hg38.fa', 
+  fi = paste0(msDataPath, 'hg38.fa'), 
   bed = A549_GR_A549_induced_HOMER, 
   fo = 'A549_GR_A549_induced.fa'
   )
@@ -416,7 +416,7 @@ bedtoolsr::bt.getfasta(
 A549_GR_no_changed_CCREs_HOMER <- 
   center.bed(A549_GR_no_changed_CCREs, 150, 149)
 bedtoolsr::bt.getfasta(
-  fi = 'hg38.fa', 
+  fi = paste0(msDataPath, 'hg38.fa'), 
   bed = A549_GR_no_changed_CCREs_HOMER, 
   fo = 'A549_GR_no_changed_CCREs.fa'
   )
@@ -424,7 +424,7 @@ bedtoolsr::bt.getfasta(
 U2OS_GR_U2OS_induced_HOMER <- 
   center.bed(U2OS_GR_U2OS_induced, 150, 149)
 bedtoolsr::bt.getfasta(
-  fi = 'hg38.fa', 
+  fi = paste0(msDataPath, 'hg38.fa'), 
   bed = U2OS_GR_U2OS_induced_HOMER, 
   fo = 'U2OS_GR_U2OS_induced.fa'
   )
@@ -432,7 +432,7 @@ bedtoolsr::bt.getfasta(
 U2OS_GR_no_changed_CCREs_HOMER <- 
   center.bed(U2OS_GR_no_changed_CCREs, 150, 149)
 bedtoolsr::bt.getfasta(
-  fi = 'hg38.fa', 
+  fi = paste0(msDataPath, 'hg38.fa'), 
   bed = U2OS_GR_no_changed_CCREs_HOMER, 
   fo = 'U2OS_GR_no_changed_CCREs.fa')
 ```
