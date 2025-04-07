@@ -51,7 +51,7 @@ Taking RefSeq coordinates for genes and parsing out:
 3. One set of coordinates for each gene, using the most internal TSS and TES, and removing the first and last 1 kb so as to remove sites of polymerase pausing
 ```{python Gene and promoter coordinates}
 
-pathToUse='/home/emw97/GR_enhancers/Manuscript_data/'
+pathToUse='/Users/erinwissink/GR-pioneer-factors-AP1-enhancers/Manuscript_data/'
 
 #Downloaded from UCSC Table Browser
 refseqFile=pathToUse+'hg38_refseq.txt' 
@@ -201,10 +201,10 @@ idx <- rowSums( counts(dds, normalized=TRUE) >= 75 ) >= 3
 dds <- dds[idx,]
 dds <- DESeq(dds)
 
-A549_wt_1vs0dex <- lfcShrink(dds, contrast = c('group', 'A5491', 'A5490'))
-A549_wt_100vs0dex <- lfcShrink(dds, contrast = c('group', 'A549100', 'A5490'))
-U2OS_wt_1vs0dex <- lfcShrink(dds, contrast = c('group', 'U2OS1', 'U2OS0'))
-U2OS_wt_100vs0dex <- lfcShrink(dds, contrast = c('group', 'U2OS100', 'U2OS0'))
+A549_wt_1vs0dex <- lfcShrink(dds, contrast = c('group', 'A5491', 'A5490'), type = 'normal')
+A549_wt_100vs0dex <- lfcShrink(dds, contrast = c('group', 'A549100', 'A5490'), type = 'normal')
+U2OS_wt_1vs0dex <- lfcShrink(dds, contrast = c('group', 'U2OS1', 'U2OS0'), type = 'normal')
+U2OS_wt_100vs0dex <- lfcShrink(dds, contrast = c('group', 'U2OS100', 'U2OS0'), type = 'normal')
 
 vsd <- vst(dds, blind = FALSE)
 
