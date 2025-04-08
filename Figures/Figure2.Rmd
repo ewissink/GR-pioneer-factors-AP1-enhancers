@@ -34,10 +34,10 @@ Making heatmaps with Deeptools of the overlapping and distinct binding sites of 
 csPath='../Manuscript_data/'
 coordPath='../Manuscript_data/'
 
-cat ${csPath}GR_summits_A549.bed | awk 'BEGIN{OFS="\t"}{print $1,$2 -25,$3 +24}' > 
+cat ${csPath}GR_summits_A549.bed | awk 'BEGIN{OFS="\t"}{print $1,$2 -25,$3 +24}' > \
 GR_summits_A549_50bp.bed
 
-cat ${csPath}GR_summits_U2OS-hGR.bed | awk 'BEGIN{OFS="\t"}{print $1,$2 -25,$3 +24}' >
+cat ${csPath}GR_summits_U2OS-hGR.bed | awk 'BEGIN{OFS="\t"}{print $1,$2 -25,$3 +24}' > \
 GR_summits_U2OS-hGR_50bp.bed
 
 #Writing files of GR ChIP-seq peaks that are shared or cell type-specific
@@ -85,57 +85,57 @@ plotHeatmap --matrixFile A549_U2OS_GR_ATAC_3categories_1kb.computeMatrix.gz
 cat ${csPath}GR_summits_A549.bed | 
   awk 'BEGIN{OFS="\t"}{print $1,$2 -150,$3 +149}' | 
   grep -v chrM | grep -v chrEBV | sed '/_/d' | 
-  fastaFromBed -fi hg38.fa -bed stdin -fo A549_GORs.fa
+  fastaFromBed -fi ${csPath}hg38.fa -bed stdin -fo A549_GORs.fa
 
 # All GORs in U2OS cells
 cat ${csPath}GR_summits_U2OS-hGR.bed | 
   awk 'BEGIN{OFS="\t"}{print $1,$2 -150,$3 +149}' | 
   grep -v chrM | grep -v chrEBV | sed '/_/d' | 
-  fastaFromBed -fi hg38.fa -bed stdin -fo U2OS_GORs.fa
+  fastaFromBed -fi ${csPath}hg38.fa -bed stdin -fo U2OS_GORs.fa
 
 # GORs shared in A549 and U2OS cells
 cat A549_U2OS_GR_overlap.bed | 
   awk 'BEGIN{OFS="\t"}{print $1,$2 -125,$3 +124}' | 
   grep -v chrM | grep -v chrEBV | sed '/_/d' | 
-  fastaFromBed -fi hg38.fa -bed stdin -fo A549_U2OS_GR_overlap.fa
+  fastaFromBed -fi ${csPath}hg38.fa -bed stdin -fo A549_U2OS_GR_overlap.fa
 
 # GORs only in A549 cells
 cat A549_GR_unique.bed | 
   awk 'BEGIN{OFS="\t"}{print $1,$2 -125,$3 +124}' | 
   grep -v chrM | grep -v chrEBV | sed '/_/d' | 
-  fastaFromBed -fi hg38.fa -bed stdin -fo A549_GR_unique.fa
+  fastaFromBed -fi ${csPath}hg38.fa -bed stdin -fo A549_GR_unique.fa
 
 # GORs only in U2OS cells
 cat U2OS_GR_unique.bed | 
   awk 'BEGIN{OFS="\t"}{print $1,$2 -125,$3 +124}' | 
   grep -v chrM | grep -v chrEBV | sed '/_/d' | 
-  fastaFromBed -fi hg38.fa -bed stdin -fo U2OS_GR_unique.fa
+  fastaFromBed -fi ${csPath}hg38.fa -bed stdin -fo U2OS_GR_unique.fa
 
 # GORs only in A549 or U2OS cells, but not in both cell types
 cat A549_GR_unique.bed U2OS_GR_unique.bed | 
   awk 'BEGIN{OFS="\t"}{print $1,$2 -125,$3 +124}' | 
   grep -v chrM | grep -v chrEBV | sed '/_/d' | 
-  fastaFromBed -fi hg38.fa -bed stdin -fo A549_U2OS_distinct_overlap.fa
+  fastaFromBed -fi ${csPath}hg38.fa -bed stdin -fo A549_U2OS_distinct_overlap.fa
 
 # Running HOMER 
 
 hoco='../Manuscript_data/HOCOMOCOv11_core_HUMAN_mono_homer_format_0.001.motif'
 
 # Finding motifs specific to A549 GORs
-findMotifs.pl A549_GORs.fa fasta A549_GORs_vs_U2OS/ 
-  -len 8,10,12 -fastaBg U2OS_GORs.fa 
+findMotifs.pl A549_GORs.fa fasta A549_GORs_vs_U2OS/ \
+  -len 8,10,12 -fastaBg U2OS_GORs.fa \
   -mcheck $hoco -bits -nogo -mknown $hoco 
 
 # Finding motifs specific to U2OS GORs
-findMotifs.pl U2OS_GORs.fa fasta U2OS_GORs_vs_A549/ 
-  -len 8,10,12 -fastaBg A549_GORs.fa 
+findMotifs.pl U2OS_GORs.fa fasta U2OS_GORs_vs_A549/ \
+  -len 8,10,12 -fastaBg A549_GORs.fa \
   -mcheck $hoco -bits -nogo -mknown $hoco 
 
 # Finding motifs specific to shared GORs
-findMotifs.pl A549_U2OS_GR_overlap.fa fasta 
-  overlapping_vs_unique_GORS/ 
-  -len 8,10,12 
-  -fastaBg A549_U2OS_distinct_overlap.fa 
+findMotifs.pl A549_U2OS_GR_overlap.fa fasta \
+  overlapping_vs_unique_GORS/ \
+  -len 8,10,12 \
+  -fastaBg A549_U2OS_distinct_overlap.fa \
   -mcheck $hoco -bits -nogo -mknown $hoco 
 ```
 
@@ -217,7 +217,7 @@ def BestMatch(sample):
       bestMatch[name]=[float(curr[5]), float(curr[5]), 1]
     else:
       bestMatch[name][1]=float(curr[5]) + bestMatch[name][1]
-      if float(curr[5]) > bestMatch[name]:
+      if float(curr[5]) > bestMatch[name][0]:
         bestMatch[name][0]=float(curr[5])
       bestMatch[name][2]=bestMatch[name][2]+1
   
